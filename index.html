@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TripSum — Trip Budget Calculator</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;800;900&family=Source+Sans+3:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/tailwindcss-cdn@3.4.10/tailwindcss.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link rel="stylesheet" href="styles/main.css">
+  <style type="text/tailwindcss" data-teda="tailwind-apply">
+    @layer components {
+      .btn-primary { @apply inline-flex items-center justify-center whitespace-nowrap bg-[#0FA3B1] text-white font-medium px-5 py-3 rounded-full shadow-xl hover:bg-[#0b8691] active:bg-[#0a7680] focus:outline-none focus:ring-4 focus:ring-[#8EE1E7]/60 transition-all duration-300 z-20; }
+      .btn-secondary { @apply inline-flex items-center justify-center whitespace-nowrap bg-white text-[#0FA3B1] font-medium px-5 py-3 rounded-full ring-1 ring-[#0FA3B1]/30 hover:bg-[#E8FBFD] focus:outline-none focus:ring-4 focus:ring-[#8EE1E7]/50 transition-all duration-300 z-20; }
+      .chip { @apply inline-flex items-center gap-2 text-sm font-medium px-3 py-1.5 rounded-full ring-1 ring-black/5 bg-white shadow-sm; }
+      .card { @apply bg-white rounded-2xl shadow-xl ring-1 ring-black/5; }
+      .section-title { @apply text-3xl md:text-4xl font-black mb-4 tracking-tight text-[#0B132B]; }
+      .lede { @apply text-lg md:text-xl text-[#24324a]/90; }
+      .link { @apply text-[#0FA3B1] hover:text-[#0b8691] underline-offset-4 hover:underline transition-colors duration-300; }
+      .nav-link { @apply text-sm text-[#24324a]/80 hover:text-[#0B132B] transition-colors duration-200; }
+      .floating { @apply shadow-xl ring-1 ring-black/5 bg-white; }
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#F8F7F3] text-[#24324a] overflow-x-hidden" style="font-family: 'Source Sans 3', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;">
+  <header class="w-full">
+    <div class="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3" aria-label="TripSum Home">
+        <img src="assets/logo.svg" alt="TripSum logo" class="h-9 w-9"/>
+        <span class="text-[#0B132B] font-black text-xl" style="font-family: 'Merriweather', Georgia, serif;">TripSum</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-6">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#rates" class="nav-link">Exchange Rates</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <a href="app.html" class="btn-primary">Launch Calculator</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO with creative overlapping blocks, no 50/50 layout -->
+    <section class="relative pt-10 pb-24 md:pb-36">
+      <div class="mx-auto max-w-7xl px-6 relative">
+        <div class="relative z-20 max-w-2xl mx-auto text-center">
+          <h1 class="text-5xl md:text-7xl font-black leading-[1.05] text-[#0B132B] tracking-tight" style="font-family: 'Merriweather', Georgia, serif;">
+            Budget your trip with confidence
+          </h1>
+          <p class="lede mt-5 max-w-xl">
+            Plan every ride, room, and bite. Track spending by category, convert currencies instantly, and keep totals in one beautiful view.
+          </p>
+          <div class="mt-8 flex items-center justify-center gap-4 flex-wrap relative z-20">
+            <a href="app.html" class="btn-primary">Start planning</a>
+            <a href="#features" class="btn-secondary">See how it works</a>
+          </div>
+        </div>
+
+        <!-- Floating sample cards -->
+        <div class="mt-12 md:mt-16 relative pointer-events-none" aria-hidden="true">
+          <div class="absolute left-1/2 -translate-x-1/2 top-0 bg-[#FFE066]/80 rounded-full blur-2xl w-72 h-72"></div>
+          <div class="relative z-10 max-w-4xl mx-auto">
+            <!-- Row 1: Transport + Meals centered -->
+            <div class="flex items-end justify-center gap-4 md:gap-6">
+              <div class="w-52 md:w-64 p-4 rounded-2xl floating animate-float-med">
+                <div class="text-xs text-[#24324a]/70 mb-1">Transport</div>
+                <div class="flex items-center justify-between">
+                  <div class="text-2xl font-extrabold text-[#0B132B]" style="font-family: 'Merriweather', Georgia, serif;">$112</div>
+                  <span class="chip">JPY <span class="font-semibold">¥16,800</span></span>
+                </div>
+              </div>
+              <div class="w-40 md:w-48 p-3 rounded-xl floating animate-float-fast">
+                <div class="text-xs text-[#24324a]/70">Meals</div>
+                <div class="mt-1 font-black text-[#0B132B]" style="font-family: 'Merriweather', Georgia, serif;">$68</div>
+              </div>
+            </div>
+            <!-- Row 2: Lodging centered below -->
+            <div class="mt-6 flex items-end justify-center">
+              <div class="w-60 md:w-72 p-5 rounded-2xl floating animate-float-slow">
+                <div class="flex items-center justify-between">
+                  <span class="chip"><span class="inline-block h-2.5 w-2.5 rounded-full bg-[#0FA3B1]"></span> Lodging</span>
+                  <span class="text-sm text-[#0B132B]/70">3 nights</span>
+                </div>
+                <div class="mt-4 text-3xl font-black text-[#0B132B]" style="font-family: 'Merriweather', Georgia, serif;">$426<span class="text-base align-super">.20</span></div>
+                <div class="mt-2 text-sm text-[#24324a]/70">Converted from EUR</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="relative py-16 md:py-20">
+      <div class="mx-auto max-w-7xl px-6">
+        <h2 class="section-title text-center" style="font-family: 'Merriweather', Georgia, serif;">Why travelers love TripSum</h2>
+        <div class="mt-8 max-w-3xl mx-auto space-y-8">
+          <div class="card relative overflow-hidden p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+            <div class="absolute -right-10 -top-10 w-44 h-44 bg-[#8EE1E7]/30 rounded-full blur-2xl"></div>
+            <div class="flex items-start gap-4">
+              <div class="shrink-0 h-12 w-12 rounded-xl bg-[#0FA3B1]/10 flex items-center justify-center ring-1 ring-[#0FA3B1]/20 text-2xl">🗂️</div>
+              <div>
+                <h3 class="text-xl font-extrabold text-[#0B132B] mb-2" style="font-family: 'Merriweather', Georgia, serif;">Category-driven planning</h3>
+                <p class="text-[#24324a]/90">Organize costs by transport, lodging, food, activities, or your own custom categories. See subtotals and keep your plan on track.</p>
+              </div>
+            </div>
+          </div>
+          <div class="card relative overflow-hidden p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+            <div class="absolute -right-10 -top-10 w-44 h-44 bg-[#FFE066]/40 rounded-full blur-2xl"></div>
+            <div class="flex items-start gap-4">
+              <div class="shrink-0 h-12 w-12 rounded-xl bg-[#FFE066]/25 flex items-center justify-center ring-1 ring-[#FFE066]/40 text-2xl">💱</div>
+              <div>
+                <h3 class="text-xl font-extrabold text-[#0B132B] mb-2" style="font-family: 'Merriweather', Georgia, serif;">Currency smart</h3>
+                <p class="text-[#24324a]/90">Enter expenses in local currencies and get instant conversion to your chosen base. Update exchange rates with one click or edit manually.</p>
+              </div>
+            </div>
+          </div>
+          <div id="rates" class="card relative overflow-hidden p-6 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl">
+            <div class="absolute -right-10 -top-10 w-44 h-44 bg-[#9B5DE5]/30 rounded-full blur-2xl"></div>
+            <div class="flex items-start gap-4">
+              <div class="shrink-0 h-12 w-12 rounded-xl bg-[#9B5DE5]/15 flex items-center justify-center ring-1 ring-[#9B5DE5]/30 text-2xl">📊</div>
+              <div>
+                <h3 class="text-xl font-extrabold text-[#0B132B] mb-2" style="font-family: 'Merriweather', Georgia, serif;">Totals that make sense</h3>
+                <p class="text-[#24324a]/90">Live category breakdowns and a running total let you know exactly where your money will go.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10 flex justify-center">
+          <a href="app.html" class="btn-primary">Launch the calculator</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="py-16 md:py-20">
+      <div class="mx-auto max-w-4xl px-6">
+        <h2 class="section-title" style="font-family: 'Merriweather', Georgia, serif;">FAQ</h2>
+        <div class="space-y-6">
+          <details class="card p-5 open:shadow-xl transition-all duration-300">
+            <summary class="font-semibold cursor-pointer">Do I need internet for exchange rates?</summary>
+            <div class="pt-3 text-[#24324a]/90">TripSum works offline with editable default rates. If you are online, you can fetch the latest rates with a tap.</div>
+          </details>
+          <details class="card p-5 transition-all duration-300">
+            <summary class="font-semibold cursor-pointer">Will my data be saved?</summary>
+            <div class="pt-3 text-[#24324a]/90">Yes. Everything is stored locally in your browser using localStorage so your plan stays put after reloads.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="py-10">
+    <div class="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm text-[#24324a]/70">Built for thoughtful travelers. © <span id="year"></span> TripSum</p>
+      <div class="flex items-center gap-6">
+        <a href="app.html" class="btn-secondary">Open Calculator</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    $(function(){
+      $('#year').text(new Date().getFullYear());
+      // Smooth scroll for in-page links
+      $(document).on('click', 'a[href^="#"]', function(e){
+        const target = $($(this).attr('href'));
+        if (target.length) {
+          e.preventDefault();
+          $('html, body').animate({ scrollTop: target.offset().top - 20 }, 500);
+        }
+      });
+    });
+  </script>
+  <script src="scripts/helpers.js"></script>
+  <script src="scripts/ui.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>
