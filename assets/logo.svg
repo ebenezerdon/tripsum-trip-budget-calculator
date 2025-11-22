@@ -1,0 +1,14 @@
+<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="TripSum logo">
+  <defs>
+    <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0FA3B1" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <rect rx="56" ry="56" width="256" height="256" fill="#FFFFFF"/>
+  <g filter="url(#s)">
+    <circle cx="128" cy="128" r="80" fill="#0FA3B1"/>
+    <path d="M64 148c22-28 44-42 64-42s42 10 64 42" fill="none" stroke="#FFE066" stroke-width="10" stroke-linecap="round"/>
+    <path d="M92 124l20 36m52-36l-20 36" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <text x="128" y="226" text-anchor="middle" font-family="Merriweather, Georgia, serif" font-weight="800" font-size="36" fill="#0B132B">TS</text>
+</svg>
